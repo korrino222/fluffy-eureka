@@ -1,5 +1,7 @@
 from fastapi import FastAPI
 
+API_KEY=lkjnasdfknpawiuebf
+
 app = FastAPI()
 
 
