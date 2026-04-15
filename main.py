@@ -5,7 +5,7 @@ app = FastAPI()
 
 @app.get("/hello")
 def hello():
-    return "World"
+    return "World!"
 
 
 @app.get("/health")
