@@ -9,3 +9,9 @@ def test_hello():
     response = client.get("/hello")
     assert response.status_code == 200
     assert response.json() == "World"
+
+
+def test_health():
+    response = client.get("/health")
+    assert response.status_code == 200
+    assert response.json() == "OK"
