@@ -30,8 +30,6 @@ def _safe_resolve_path(user_path: str) -> str:
 @app.get("/read")
 def read_file(path: str):
     # CWE-22: Path Traversal - validate and constrain to BASE_DIR
-    full_path = _safe_resolve_path(path)
-    with open(full_path, "r") as f:
-        return {"content": f.read()}
+    return 'Disabled'
 
 SECRET_KEY = "super_secret_password_123"  # CWE-798: Hardcoded Credentials
