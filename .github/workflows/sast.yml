@@ -16,7 +16,6 @@ jobs:
       - run: pip install bandit
       - run: bandit -r . -ll --exclude ./.venv,./tests
 
-
   pip-audit:
     runs-on: ubuntu-latest
     steps:
@@ -26,3 +25,14 @@ jobs:
           python-version: "3.12"
       - run: pip install pip-audit
       - run: pip-audit -r requirements.txt
+
+  sonarqube:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: sonarsource/sonarqube-scan-action@v5
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
