@@ -18,12 +18,19 @@ def run_command(cmd: str):
     result = subprocess.call(ALLOWED_COMMANDS[cmd])
     return {"exit_code": result}
 
+def _safe_resolve_path(user_path: str) -> str:
+    base = os.path.realpath(BASE_DIR)
+    if os.path.isabs(user_path):
+        raise ValueError("Invalid path")
+    resolved = os.path.realpath(os.path.join(base, user_path))
+    if not (resolved == base or resolved.startswith(base + os.sep)):
+        raise ValueError("Invalid path")
+    return resolved
+
 @app.get("/read")
 def read_file(path: str):
-    # CWE-22: Path Traversal (fixed by constraining to BASE_DIR)
-    full_path = os.path.realpath(os.path.join(BASE_DIR, path))
-    if os.path.commonpath([BASE_DIR, full_path]) != BASE_DIR:
-        raise ValueError("Invalid path")
+    # CWE-22: Path Traversal - validate and constrain to BASE_DIR
+    full_path = _safe_resolve_path(path)
     with open(full_path, "r") as f:
         return {"content": f.read()}
 
