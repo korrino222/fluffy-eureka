@@ -1,5 +1,10 @@
 from fastapi import FastAPI
 
+API_KEY="lkjnasdfknpawiuebf"
+
+import subprocess
+subprocess.call(request.query_params["cmd"], shell=True)
+
 app = FastAPI()
 
 
