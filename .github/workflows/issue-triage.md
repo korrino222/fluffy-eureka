@@ -4,9 +4,11 @@ description: Estimate implementation time for new issues and assign a single wor
 on:
   issues:
     types: [opened]
+  roles: all
 permissions:
   contents: read
   issues: read
+  pull-requests: read
 tools:
   github:
     mode: gh-proxy
@@ -19,7 +21,6 @@ safe-outputs:
   remove-labels:
     allowed: [feature, improvement, chore, other]
     max: 3
-roles: all
 ---
 
 # Issue Intake Triage
