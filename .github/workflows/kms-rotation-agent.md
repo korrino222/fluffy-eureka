@@ -8,7 +8,13 @@ permissions:
   copilot-requests: write
 
 engine: copilot
+model: gpt-5
 timeout-minutes: 15
+
+models:
+  default-ai-credits-pricing:
+    input: 5.0
+    output: 25.0
 
 tools:
   bash: [":*"]
