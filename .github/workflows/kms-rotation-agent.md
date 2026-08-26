@@ -1,7 +1,7 @@
 ---
 on:
   push:
-    branches: [feat/gh-aw-secure]
+    branches: [feat/gh-aw-insecure]
 
 permissions:
   contents: read
